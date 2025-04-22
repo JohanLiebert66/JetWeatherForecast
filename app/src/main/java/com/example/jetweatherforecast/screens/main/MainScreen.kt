@@ -4,14 +4,16 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -28,8 +30,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.jetweatherforecast.data.DataOrException
 import com.example.jetweatherforecast.model.Weather
+import com.example.jetweatherforecast.model.WeatherItem
 import com.example.jetweatherforecast.utils.formatDate
 import com.example.jetweatherforecast.utils.formatDecimals
+import com.example.jetweatherforecast.widgets.HumidityWindPressureRow
+import com.example.jetweatherforecast.widgets.SunsetSunRiseRow
 import com.example.jetweatherforecast.widgets.WeatherAppBar
 import com.example.jetweatherforecast.widgets.WeatherStateImage
 
@@ -86,8 +91,8 @@ fun MainContent(data: Weather, isImperial: Boolean) {
         horizontalAlignment = Alignment.CenterHorizontally) {
 
         Text(text = formatDate(weatherItem.dt), // Wed Nov 30
-            style = MaterialTheme.typography.caption,
-            color = MaterialTheme.colors.onSecondary,
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onSecondary,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(6.dp))
 
@@ -109,8 +114,8 @@ fun MainContent(data: Weather, isImperial: Boolean) {
                     fontStyle = FontStyle.Italic)
             }
         }
-        HumidityWindPressureRow(weather = data.list[0], isImperial = isImperial)
-        Divider()
+        HumidityWindPressureRow(weather = data.list[0])
+        HorizontalDivider()
         SunsetSunRiseRow(weather = data.list[0])
         Text("This Week",
             style = MaterialTheme.typography.subtitle1,
@@ -123,7 +128,8 @@ fun MainContent(data: Weather, isImperial: Boolean) {
             shape = RoundedCornerShape(size = 14.dp)
         ) {
             LazyColumn(modifier = Modifier.padding(2.dp),
-                contentPadding = PaddingValues(1.dp)){
+                contentPadding = PaddingValues(1.dp)
+            ){
                 items(items =  data.list) { item: WeatherItem ->
                     WeatherDetailRow(weather = item)
 
@@ -135,4 +141,9 @@ fun MainContent(data: Weather, isImperial: Boolean) {
 
     }
 
+}
+
+@Composable
+fun WeatherDetailRow() {
+    
 }

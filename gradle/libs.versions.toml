@@ -1,7 +1,7 @@
 [versions]
 # Gradle and Kotlin
 androidGradlePlugin = "8.4.0"
-kotlin = "1.9.22"
+kotlin = "2.0.0"
 
 # SDK Versions
 compileSdk = "34"
@@ -9,20 +9,33 @@ minSdk = "24"
 targetSdk = "34"
 jvmTarget = "17"
 
-# Library Versions
-androidxCore = "1.12.0"
+# AndroidX Libraries
+androidxCore = "1.13.0" # Updated
 lifecycle = "2.7.0"
+activityCompose = "1.9.0" # Updated
+room = "2.6.1"
+navigationCompose = "2.7.7" # Updated
+
+# Compose
 composeBom = "2024.02.01"
-compose = "1.6.4"
-material3 = "1.2.1"
-activityCompose = "1.8.2"
+composeCompiler = "1.5.10"
+material3 = "1.3.1"
+material3Adaptive = "1.3.1"
+material3WindowSize = "1.3.1"
+
+# Hilt
 hilt = "2.51"
 hiltNavigationCompose = "1.2.0"
-room = "2.6.1"
+
+# Networking
 retrofit = "2.9.0"
 okhttp = "5.0.0-alpha.14"
-coil = "2.5.0"
+
+# Coroutines
 coroutines = "1.7.3"
+
+# Coil
+coil = "2.5.0"
 
 # Testing
 junit = "4.13.2"
@@ -30,19 +43,26 @@ androidxJunit = "1.1.5"
 espresso = "3.5.1"
 
 [libraries]
-# AndroidX
+# AndroidX Core
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
-androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 
-# Compose
+# Compose BOM
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+
+# Compose Core (versioned by BOM)
 androidx-compose-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
-androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "material3WindowSize" }
+androidx-compose-material3-adaptive = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3Adaptive" }
+androidx-compose-material3-dynamiccolor = { module = "androidx.compose.material3:material3-dynamic-color" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+
+# Debug
+debug-androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 
 # Hilt
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -56,14 +76,14 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
 # Room
-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 # Coroutines
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
-# Image Loading
+# Coil
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 # Testing
@@ -72,11 +92,7 @@ androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJu
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 
 [plugins]
-# Core plugins
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-
-# Hilt
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-

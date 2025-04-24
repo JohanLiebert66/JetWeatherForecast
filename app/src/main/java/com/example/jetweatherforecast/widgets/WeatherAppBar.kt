@@ -69,7 +69,9 @@ fun WeatherAppBar (
         //elevation = elevation,
         actions = {
             if (isMainScreen) {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    onAddActionClicked.invoke() // navigate to search screen
+                }) {
                     Icon(
                         imageVector = Icons.Default.Search,
                         contentDescription = "Search Icon"

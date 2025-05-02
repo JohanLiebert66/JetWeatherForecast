@@ -85,6 +85,7 @@ fun MainScaffold(weather: Weather, navController: NavController) {
             }
         }
     ){
+        innerPadding->
         MainContent(data = weather, isImperial = false)
     }
 }
@@ -96,7 +97,7 @@ fun MainContent(data: Weather, isImperial: Boolean) {
 
     Column(
         Modifier
-            .padding(4.dp)
+            .padding(top = 100.dp, bottom = 4.dp)
             .fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {

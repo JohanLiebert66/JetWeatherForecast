@@ -14,11 +14,25 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+//@HiltViewModel
+//public class MainViewModel @Inject constructor(private val repository: WeatherRepository): ViewModel() {
+//    suspend fun getWeatherData(city: String): DataOrException<Weather, Boolean, Exception> {
+//        return repository.getWeather(cityQuery = city)
+//    }
+// }
+
+
 @HiltViewModel
-public class MainViewModel @Inject constructor(private val repository: WeatherRepository): ViewModel() {
-    suspend fun getWeatherData(city: String): DataOrException<Weather, Boolean, Exception> {
+class MainViewModel @Inject constructor(private val repository: WeatherRepository)
+    : ViewModel(){
+
+    suspend fun getWeatherData(city: String)
+            : DataOrException<Weather, Boolean, Exception> {
+        Log.d("MainViewModel", "Fetching weather data for city: $city")
+
         return repository.getWeather(cityQuery = city)
+
     }
- }
 
 
+}

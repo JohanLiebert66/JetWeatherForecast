@@ -63,8 +63,6 @@ fun MainScreen (
         //Text(text = "Main Screen ${weatherData.data!!.city.country}")
         MainScaffold(weather = weatherData.data!!, navController)
     }
-
-    Text(text = "Main Screen")
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

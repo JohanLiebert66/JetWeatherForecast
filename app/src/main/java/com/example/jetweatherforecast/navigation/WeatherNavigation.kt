@@ -29,7 +29,7 @@ fun WeatherNavigation() {
             arguments = listOf(
                 navArgument(name = "city") {
                     type = NavType.StringType
-                    defaultValue = "Seattle"
+                    defaultValue = "Search"
                     nullable = true
                 }
             )

@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -72,12 +73,13 @@ fun WeatherAppBar (
         title = {
             Text(
                 text = title,
-                color = MaterialTheme.colorScheme.onSecondary,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 style = TextStyle(fontWeight = FontWeight.Bold),
-                fontSize = 15.sp
+                fontSize = 15.sp,
+                textAlign = TextAlign.Center
             )
         },
-        modifier = TODO(),
+      //  modifier = (),
         navigationIcon = {
             if (icon != null) {
                 Icon(
@@ -115,8 +117,8 @@ fun WeatherAppBar (
 
             }
         },
-        windowInsets = TODO(),
-        colors = TODO()
+       // windowInsets = (),
+        //colors = ()
     )
 }
 

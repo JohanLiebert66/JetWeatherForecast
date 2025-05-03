@@ -15,9 +15,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -45,6 +49,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.jetweatherforecast.R
 import com.example.jetweatherforecast.model.WeatherItem
+import com.example.jetweatherforecast.navigation.WeatherScreens
 import com.example.jetweatherforecast.utils.formatDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -123,30 +128,61 @@ fun WeatherAppBar (
 }
 
 @Composable
-fun ShowSettingsDropDownMenu(showDialog:
-                             MutableState<Boolean>,
-                             navController: NavController
+fun ShowSettingsDropDownMenu(
+    showDialog: MutableState<Boolean>,
+    navController: NavController
 ) {
-    var expanded by remember {
-        mutableStateOf(true)
-    }
+    var expanded by remember { mutableStateOf(true) }
+    val items = listOf("About", "Favorites", "Settings")
     // Create the Structure of the Dialog [Fav, About & Settings]
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentSize(Alignment.TopEnd)
             .absolutePadding(top = 45.dp, right = 20.dp)
-
-    ){
+    ) {
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = {
-                showDialog.value = false
+                expanded = false
+                showDialog.value = false //expanded = false
             },
-            modifier = Modifier.width(140.dp)
+            modifier = Modifier
+                .width(140.dp)
                 .background(Color.White)
         ) {
-            
+            items.forEach { text ->
+                DropdownMenuItem(
+                    text = {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = when (text) {
+                                    "About" -> Icons.Default.Info
+                                    "Favorites" -> Icons.Default.FavoriteBorder
+                                    //"Settings" -> Icons.Default.Settings
+                                    else -> Icons.Default.Settings
+                                },
+                                contentDescription = "$text icon",
+                                tint = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.padding(end = 8.dp)
+                            )
+                            Text(
+                                text = text,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
+                    },
+                    onClick = {
+                        expanded = false
+                        showDialog.value = false
+                        when (text) {
+                            "About" -> navController.navigate(WeatherScreens.AboutScreen.name)
+                            "Favorites" -> navController.navigate(WeatherScreens.FavoriteScreen.name)
+                            "Settings" -> navController.navigate(WeatherScreens.SettingsScreen.name)
+                        }
+                    }
+                )
+            }
         }
     }
 }

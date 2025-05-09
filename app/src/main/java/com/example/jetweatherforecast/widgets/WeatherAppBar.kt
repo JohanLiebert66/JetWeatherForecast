@@ -36,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -45,11 +46,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.jetweatherforecast.R
+import com.example.jetweatherforecast.model.Favorite
 import com.example.jetweatherforecast.model.WeatherItem
 import com.example.jetweatherforecast.navigation.WeatherScreens
+import com.example.jetweatherforecast.screens.favorites.FavoriteViewModel
 import com.example.jetweatherforecast.utils.formatDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,6 +64,7 @@ fun WeatherAppBar (
     isMainScreen: Boolean = true,
     elevation: Dp = 0.dp,
     navController: NavController,
+    favoriteViewModel: FavoriteViewModel = hiltViewModel(), // inject the view model, instantiate it so no need to call it whenever we call AppBar
     onAddActionClicked: () -> Unit = {},
     onButtonClicked: () -> Unit = {}
 ) {
@@ -94,6 +99,21 @@ fun WeatherAppBar (
                         onButtonClicked.invoke()
                     }
                 )
+            }
+            if (isMainScreen) {
+                Icon(imageVector = Icons.Default.FavoriteBorder,
+                    contentDescription = "Favorite Icon",
+                    modifier = Modifier
+                        .scale(0.9f)
+                        .clickable {
+                            // insert city and country
+                            val dataList = title.split(",")
+                            favoriteViewModel.insertFavorite(Favorite(
+                                city = dataList[0], // city name
+                                country = dataList[1]) // country code
+                            )
+                        },
+                    tint = Color.Red.copy(alpha = 0.6f))
             }
         },
         //backgroundColor = Color.Transparent,

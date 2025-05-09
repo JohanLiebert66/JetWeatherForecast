@@ -45,7 +45,6 @@ fun SearchScreen(navController: NavController) {
             navController = navController,
             icon = Icons.AutoMirrored.Filled.ArrowBack,
             isMainScreen = false,
-
             ){
             navController.popBackStack() // go back to previous screen
         }

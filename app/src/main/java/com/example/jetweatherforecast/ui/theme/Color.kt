@@ -3,11 +3,11 @@ package com.example.jetweatherforecast.ui.theme
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF825500)
-val md_theme_light_onPrimary = Color(0xFFFFFFFF)
+val md_theme_light_onPrimary = Color(0xFF0A0A0A)
 val md_theme_light_primaryContainer = Color(0xFFFFDDB3)
 val md_theme_light_onPrimaryContainer = Color(0xFF291800)
 val md_theme_light_secondary = Color(0xFF6F5B40)
-val md_theme_light_onSecondary = Color(0xFFFFFFFF)
+val md_theme_light_onSecondary = Color(0xFF070707)
 val md_theme_light_secondaryContainer = Color(0xFFFBDEBC)
 val md_theme_light_onSecondaryContainer = Color(0xFF271904)
 val md_theme_light_tertiary = Color(0xFF51643F)

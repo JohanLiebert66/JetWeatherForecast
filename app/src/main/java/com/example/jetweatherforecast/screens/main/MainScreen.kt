@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -85,8 +86,8 @@ fun MainScaffold(weather: Weather, navController: NavController) {
             }
         }
     ){
-        innerPadding->
-        MainContent(data = weather, isImperial = false)
+
+    MainContent(data = weather, isImperial = false)
     }
 }
 
@@ -103,10 +104,11 @@ fun MainContent(data: Weather, isImperial: Boolean) {
         horizontalAlignment = Alignment.CenterHorizontally) {
 
         Text(text = formatDate(weatherItem.dt), // Wed Nov 30
-            style = MaterialTheme.typography.headlineMedium,
-            color = MaterialTheme.colorScheme.onSecondary,
+            style = MaterialTheme.typography.headlineSmall,
+            color = Color.Black,
+            textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(6.dp))
+            modifier = Modifier.padding(16.dp).fillMaxWidth())
 
         Surface(modifier = Modifier
             .padding(4.dp)

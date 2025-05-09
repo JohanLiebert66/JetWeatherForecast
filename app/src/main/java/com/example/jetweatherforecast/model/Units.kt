@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "settings_tbl")
-data class Unit(
+data class Units(
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "unit")

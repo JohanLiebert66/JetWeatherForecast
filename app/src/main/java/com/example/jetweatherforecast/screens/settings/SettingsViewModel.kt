@@ -3,7 +3,7 @@ package com.example.jetweatherforecast.screens.settings
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweatherforecast.model.Unit
+import com.example.jetweatherforecast.model.Units
 import com.example.jetweatherforecast.repository.WeatherDbRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val repository: WeatherDbRepository
 ): ViewModel() {
-    private val _unitList = MutableStateFlow<List<Unit>>(emptyList())
+    private val _unitList = MutableStateFlow<List<Units>>(emptyList())
     val unitList = _unitList.asStateFlow()
 
     init {
@@ -37,9 +37,9 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun insertUnit(unit: com.example.jetweatherforecast.model.Unit) = viewModelScope.launch { repository.insertUnit(unit) }
-    fun updateUnit(unit: com.example.jetweatherforecast.model.Unit) = viewModelScope.launch { repository.updateUnit(unit) }
-    fun deleteUnit(unit: com.example.jetweatherforecast.model.Unit) = viewModelScope.launch { repository.deleteUnit(unit) }
+    fun insertUnit(unit: com.example.jetweatherforecast.model.Units) = viewModelScope.launch { repository.insertUnit(unit) }
+    fun updateUnit(unit: com.example.jetweatherforecast.model.Units) = viewModelScope.launch { repository.updateUnit(unit) }
+    fun deleteUnit(unit: com.example.jetweatherforecast.model.Units) = viewModelScope.launch { repository.deleteUnit(unit) }
     fun deleteAllUnits() = viewModelScope.launch { repository.deleteAllUnits() }
 
 

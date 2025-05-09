@@ -2,10 +2,14 @@ package com.example.jetweatherforecast.screens.settings
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 
 @Composable
-fun SettingsScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun SettingsScreen(
+    navController: NavController,
+    settingsViewModel: SettingsViewModel = hiltViewModel()
+) {
+
     Text("Settings")
 }

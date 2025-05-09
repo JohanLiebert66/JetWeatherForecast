@@ -90,6 +90,7 @@ fun WeatherAppBar(
         modifier = Modifier.background(Color.Gray),
         title = {
             Text(text = title,
+                modifier = Modifier.padding(start = 16.dp),
                 color = Color.Black,
                 style = TextStyle(fontWeight = FontWeight.Bold,
                     fontSize = 15.sp))
@@ -132,6 +133,7 @@ fun WeatherAppBar(
                     Icon(imageVector = Icons.Default.Favorite,
                         contentDescription = "Favorite icon",
                         modifier = Modifier
+                            .padding(start = 8.dp)
                             .scale(0.9f)
                             .clickable {
                                 val dataList = title.split(",")

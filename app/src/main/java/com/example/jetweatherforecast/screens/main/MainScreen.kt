@@ -104,6 +104,7 @@ fun MainContent(data: Weather, isImperial: Boolean) {
         horizontalAlignment = Alignment.CenterHorizontally) {
 
         Text(text = formatDate(weatherItem.dt), // Wed Nov 30
+
             style = MaterialTheme.typography.headlineSmall,
             color = Color.Black,
             textAlign = TextAlign.Center,

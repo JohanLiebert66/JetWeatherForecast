@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.absolutePadding
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -47,7 +46,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -60,6 +58,7 @@ import com.example.jetweatherforecast.model.WeatherItem
 import com.example.jetweatherforecast.navigation.WeatherScreens
 import com.example.jetweatherforecast.screens.favorites.FavoriteViewModel
 import com.example.jetweatherforecast.utils.formatDateTime
+import com.example.jetweatherforecast.utils.formatDecimals
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -237,7 +236,7 @@ fun WeatherStateImage(imageUrl: String) {
 }
 
 @Composable
-fun HumidityWindPressureRow(weather: WeatherItem){
+fun HumidityWindPressureRow(weather: WeatherItem, isImperial: Boolean){
     Row (modifier = Modifier
         .padding(12.dp)
         .fillMaxWidth(),
@@ -288,7 +287,7 @@ fun HumidityWindPressureRow(weather: WeatherItem){
                 contentDescription = "wind icon",
                 modifier = Modifier.size(20.dp))
             Text(
-                text = "${weather.speed} mph",
+                text = "${formatDecimals(weather.speed)}" + if (isImperial) "mph" else "m/s",
                 style = MaterialTheme.typography.labelMedium
             )
 

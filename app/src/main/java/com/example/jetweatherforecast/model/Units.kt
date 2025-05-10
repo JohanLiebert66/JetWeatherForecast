@@ -10,6 +10,6 @@ import androidx.room.PrimaryKey
 data class Units(
     @NonNull
     @PrimaryKey
-    @ColumnInfo(name = "unit")
+    @ColumnInfo(name = "units")
     val unit: String
 )
